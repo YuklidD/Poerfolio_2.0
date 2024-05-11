@@ -310,3 +310,34 @@ section {
       justify-content: center !important;
   }
 }
+.swipe-indicator {
+  display: none; /* Hide by default */
+  text-align: center;
+  color: #fff; /* Change the color based on your design */
+  font-size: 16px;
+  padding: 10px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.5); /* Semi-transparent background */
+  border-radius: 20px;
+  white-space: nowrap;
+  margin-bottom: 5% !important;
+ 
+}
+
+@media only screen and (max-width: 768px) {
+  .swipe-indicator {
+      display: block; /* Only show on small screens */
+  }
+}
+
+@keyframes swipe-animation {
+    0%, 100% { transform: translateX(-50%) translateX(0); }
+    50% { transform: translateX(-50%) translateX(-10px); }
+}
+
+.swipe-indicator {
+    animation: swipe-animation 2s ease-in-out infinite;
+}

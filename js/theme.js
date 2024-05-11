@@ -94,38 +94,48 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
 document.addEventListener('DOMContentLoaded', function() {
-    var startX, startY, dist, threshold = 150, allowedTime = 200, elapsedTime, startTime;
-    var carouselSlides = document.querySelector('.carousel__slides');
+    var startX, dist, threshold = 100; // Required min distance traveled to be considered swipe
+    var allowedTime = 200, elapsedTime, startTime; // Timing variables
+    var slides = document.getElementsByName('slides'); // Get all slide inputs
+    var projectNameElement = document.getElementById('project-name'); // Get the project name element
 
-    carouselSlides.addEventListener('touchstart', function(e) {
+    function handleSwipe(isLeftSwipe) {
+        var currentIndex = Array.from(slides).findIndex(input => input.checked);
+        var newIndex = isLeftSwipe ? currentIndex + 1 : currentIndex - 1;
+
+        // Wrap slide index
+        if (newIndex >= slides.length) newIndex = 0;
+        if (newIndex < 0) newIndex = slides.length - 1;
+
+        slides[newIndex].checked = true;
+        updateProjectName(newIndex); // Update the project name
+    }
+
+    function updateProjectName(index) {
+        var projectLabel = document.querySelector(`label[for="slide-${index + 1}"]`); // Assuming labels are in order and named 'slide-X'
+        if (projectLabel) {
+            projectNameElement.textContent = projectLabel.textContent; // Set the project name
+        }
+    }
+
+    var carousel = document.querySelector('.carousel__slides');
+    carousel.addEventListener('touchstart', function(e) {
         var touchobj = e.changedTouches[0];
-        dist = 0;
         startX = touchobj.pageX;
-        startY = touchobj.pageY;
-        startTime = new Date().getTime(); // record time when finger first makes contact with surface
+        startTime = new Date().getTime(); // Record time when finger first makes contact with surface
         e.preventDefault();
     }, false);
 
-    carouselSlides.addEventListener('touchmove', function(e) {
-        e.preventDefault(); // prevent scrolling when inside DIV
-    }, false);
-
-    carouselSlides.addEventListener('touchend', function(e) {
+    carousel.addEventListener('touchend', function(e) {
         var touchobj = e.changedTouches[0];
-        dist = touchobj.pageX - startX; // get total dist traveled by finger while in contact with surface
-        elapsedTime = new Date().getTime() - startTime; // get time elapsed
-        // check that elapsed time is within specified, horizontal dist traveled >= threshold, and vertical dist traveled <= 100
-        var swipeRightBol = (elapsedTime <= allowedTime && dist >= threshold && Math.abs(touchobj.pageY - startY) <= 100);
-        var swipeLeftBol = (elapsedTime <= allowedTime && dist <= -threshold && Math.abs(touchobj.pageY - startY) <= 100);
-        if (swipeRightBol || swipeLeftBol) {
-            // Handle the swiping actions here; you may need to adjust according to your specific element handling.
-            var newIndex = parseInt(document.querySelector('input[name="slides"]:checked').id.split('-')[1], 10);
-            newIndex += swipeLeftBol ? 1 : -1; // determine new index, left swipe increments, right swipe decrements
-            var newSlide = document.getElementById('slide-' + newIndex);
-            if (newSlide) newSlide.checked = true;
-        }
+        dist = touchobj.pageX - startX; // Get total dist traveled by finger while in contact with surface
+        elapsedTime = new Date().getTime() - startTime; // Get time elapsed
+        var swipeRightBol = elapsedTime <= allowedTime && dist >= threshold;
+        var swipeLeftBol = elapsedTime <= allowedTime && dist <= -threshold;
+
+        if (swipeRightBol || swipeLeftBol) handleSwipe(swipeLeftBol);
+
         e.preventDefault();
     }, false);
 });
