@@ -13,7 +13,7 @@ section {
 	outline: none !important;
 	border-radius: 10px !important;
 	box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),
-		5px 5px 15px rgba(0, 0, 0, 0.2) !important;
+		5px 5px 15px  rgba(0, 0, 0, 0.2) !important;
 	background: transparent !important;
   color: #F4F4F4;
   }
@@ -293,28 +293,20 @@ section {
 }
 
 @media only screen and (max-width: 768px) {
-    .carousel, .carousel__slides, .carousel__thumbnails {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    }
+  .carousel__thumbnails {
+      display: none !important; /* Hide thumbnails */
+  }
 
-    .carousel__thumbnails li {
-        display: inline-block !important;
-        margin: 10px !important;
-    }
+  .carousel__slide figure figcaption {
+      order: 1 !important;
+      width: 100% !important;
+      text-align: center !important;
+      padding-top: 20px !important; /* Space between image and text */
+  }
 
-    label[for^="slide-"] {
-        font-size: 0.8em !important;
-        padding: 5px !important;
-        display: none !important;
-    }
-
-    body, figcaption {
-        font-size: 14px !important;
-    }
-
-    .carousel__slide figure {
-        padding: 10px !important;
-    }
+  .carousel__slide {
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+  }
 }

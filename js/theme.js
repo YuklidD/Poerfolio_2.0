@@ -94,6 +94,45 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    var startX, startY, dist, threshold = 150, allowedTime = 200, elapsedTime, startTime;
+    var carouselSlides = document.querySelector('.carousel__slides');
+
+    carouselSlides.addEventListener('touchstart', function(e) {
+        var touchobj = e.changedTouches[0];
+        dist = 0;
+        startX = touchobj.pageX;
+        startY = touchobj.pageY;
+        startTime = new Date().getTime(); // record time when finger first makes contact with surface
+        e.preventDefault();
+    }, false);
+
+    carouselSlides.addEventListener('touchmove', function(e) {
+        e.preventDefault(); // prevent scrolling when inside DIV
+    }, false);
+
+    carouselSlides.addEventListener('touchend', function(e) {
+        var touchobj = e.changedTouches[0];
+        dist = touchobj.pageX - startX; // get total dist traveled by finger while in contact with surface
+        elapsedTime = new Date().getTime() - startTime; // get time elapsed
+        // check that elapsed time is within specified, horizontal dist traveled >= threshold, and vertical dist traveled <= 100
+        var swipeRightBol = (elapsedTime <= allowedTime && dist >= threshold && Math.abs(touchobj.pageY - startY) <= 100);
+        var swipeLeftBol = (elapsedTime <= allowedTime && dist <= -threshold && Math.abs(touchobj.pageY - startY) <= 100);
+        if (swipeRightBol || swipeLeftBol) {
+            // Handle the swiping actions here; you may need to adjust according to your specific element handling.
+            var newIndex = parseInt(document.querySelector('input[name="slides"]:checked').id.split('-')[1], 10);
+            newIndex += swipeLeftBol ? 1 : -1; // determine new index, left swipe increments, right swipe decrements
+            var newSlide = document.getElementById('slide-' + newIndex);
+            if (newSlide) newSlide.checked = true;
+        }
+        e.preventDefault();
+    }, false);
+});
+
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
     // Get the current year
     var currentYear = new Date().getFullYear();
