@@ -8,6 +8,15 @@ section {
     margin: 0 auto;
     padding: 0 20px;
   }
+  .gradient{
+  border: none !important;
+	outline: none !important;
+	border-radius: 10px !important;
+	box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),
+		5px 5px 15px rgba(0, 0, 0, 0.2) !important;
+	background: transparent !important;
+  color: #F4F4F4;
+  }
   
   .carousel {
     display: block;
@@ -15,6 +24,16 @@ section {
     position: relative;
     margin-bottom: 22px;
   }
+  .carousel label {
+    display: none; /* Hide the labels */
+}
+.carousel h3{
+  color: #F4F4F4;
+}
+
+.image{
+  border-radius:5%;
+}
   .carousel > input {
     clip: rect(1px, 1px, 1px, 1px);
     clip-path: inset(50%);
