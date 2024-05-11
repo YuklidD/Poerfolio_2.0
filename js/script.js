@@ -12,8 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-  // Get the current year
-  var currentYear = new Date().getFullYear();
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the current year
+    var currentYear = new Date().getFullYear();
 
-  // Set the current year in the span element
-  document.getElementById("currentYear").innerText = currentYear;
+    // Set the current year in the span element
+    var currentYearSpan = document.getElementById("currentYear");
+    if (currentYearSpan !== null) {
+        currentYearSpan.innerText = currentYear;
+    } else {
+        console.error("Element with ID 'currentYear' not found.");
+    }
+});
