@@ -1,3 +1,3 @@
 # Portfolio_2.0
 
-![Visit My Porfolio](https://dakshanapeiris.me)
+<a link="https://dakshanapeiris.me">Visit My PortFolio</a>
