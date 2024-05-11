@@ -31,9 +31,6 @@ section {
   color: #F4F4F4;
 }
 
-.image{
-  border-radius:5%;
-}
   .carousel > input {
     clip: rect(1px, 1px, 1px, 1px);
     clip-path: inset(50%);
@@ -289,3 +286,35 @@ section {
       margin-top: 5px;
   }
   
+  .carousel__slides .image img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .carousel, .carousel__slides, .carousel__thumbnails {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .carousel__thumbnails li {
+        display: inline-block !important;
+        margin: 10px !important;
+    }
+
+    label[for^="slide-"] {
+        font-size: 0.8em !important;
+        padding: 5px !important;
+        display: none !important;
+    }
+
+    body, figcaption {
+        font-size: 14px !important;
+    }
+
+    .carousel__slide figure {
+        padding: 10px !important;
+    }
+}
