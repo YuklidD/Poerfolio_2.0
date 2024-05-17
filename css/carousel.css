@@ -196,12 +196,6 @@ section {
   }
 
   
-    @media only screen and (min-width: 768px) {
-      .custom-padding {
-        padding-right: 200px;
-      }
-    }
-
     /* Badge css */
 
     
@@ -285,6 +279,42 @@ section {
       padding-left: 5px;
       margin-top: 5px;
   }
+
+
+
+  .badges {
+    padding: 20px;
+}
+
+.text-6 {
+    font-size: 24px;
+}
+
+
+
+@media (min-width: 768px) {
+    .badges {
+        padding: 40px;
+    }
+
+    .text-6 {
+        font-size: 36px;
+    }
+
+    .profile-box {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .profile-details {
+        margin-left: 20px;
+        text-align: left;
+    }
+    .badge-container {
+      flex-direction: row;
+  }
+}
+
   
   .carousel__slides .image img {
     width: 100% !important;
