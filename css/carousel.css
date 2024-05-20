@@ -196,6 +196,23 @@ section {
   }
 
   
+  /* Small screen styles */
+@media (max-width: 767px) {
+  .carousel__slide figcaption {
+    width: 100%;
+    min-width: auto;
+  }
+  .carousel__slide .credit {
+    display: none; /* Hide the credit on small screens */
+  }
+  .carousel__thumbnails {
+    margin: 0 -5px; /* Adjust margin for smaller thumbnails */
+  }
+  .carousel__thumbnails li {
+    max-width: calc((100% / 4) - 10px); /* Adjust thumbnail size for smaller screens */
+    margin: 0 5px; /* Adjust margin for smaller thumbnails */
+  }
+}
     /* Badge css */
 
     
@@ -316,30 +333,7 @@ section {
 }
 
   
-  .carousel__slides .image img {
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-}
 
-@media only screen and (max-width: 768px) {
-  .carousel__thumbnails {
-      display: none !important; /* Hide thumbnails */
-  }
-
-  .carousel__slide figure figcaption {
-      order: 1 !important;
-      width: 100% !important;
-      text-align: center !important;
-      padding-top: 20px !important; /* Space between image and text */
-  }
-
-  .carousel__slide {
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-  }
-}
 .swipe-indicator {
   display: none; /* Hide by default */
   text-align: center;
