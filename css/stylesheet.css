@@ -3357,10 +3357,6 @@ input:-internal-autofill-selected {
   width: 100%; 
   max-height: 100%;
 }
-.tryhackme-icon {
-  background-image: url(https://harshgupta.tech/images/tryhackme-icon.png);
-  aspect-ratio: 1/1;
-}
 nav {
   height: 300px;
   overflow-y: scroll;

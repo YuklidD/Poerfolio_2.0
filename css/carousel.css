@@ -1,29 +1,29 @@
 section {
-    background: #F4F4F4;
-    padding: 0px 0;
-  }
-  
-  .container {
-    max-width: 1044px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  .gradient{
+  background: #F4F4F4;
+  padding: 0px 0;
   border: none !important;
-	outline: none !important;
-	border-radius: 10px !important;
-	box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),
-		5px 5px 15px  rgba(0, 0, 0, 0.2) !important;
-	background: transparent !important;
-  color: #F4F4F4;
-  }
-  
-  .carousel {
-    display: block;
-    text-align: left;
-    position: relative;
-    margin-bottom: 22px;
-  }
+  outline: none !important;
+  box-shadow:
+  5px 5px 15px 5px rgba(0, 0.2, 0, 0.2) !important;
+  background: transparent !important;
+  color: #F4F4F4; 
+}
+
+.container {
+  max-width: 1044px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.gradient{
+
+}
+
+.carousel {
+  display: block;
+  text-align: left;
+  position: relative;
+  margin-bottom: 50px;
+}
   .carousel label {
     display: none; /* Hide the labels */
 }
@@ -31,188 +31,279 @@ section {
   color: #F4F4F4;
 }
 
-  .carousel > input {
-    clip: rect(1px, 1px, 1px, 1px);
-    clip-path: inset(50%);
-    height: 1px;
-    width: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-  }
-  .carousel > input:nth-of-type(6):checked ~ .carousel__slides .carousel__slide:first-of-type {
-    margin-left: -500%;
-  }
-  .carousel > input:nth-of-type(5):checked ~ .carousel__slides .carousel__slide:first-of-type {
-    margin-left: -400%;
-  }
-  .carousel > input:nth-of-type(4):checked ~ .carousel__slides .carousel__slide:first-of-type {
-    margin-left: -300%;
-  }
-  .carousel > input:nth-of-type(3):checked ~ .carousel__slides .carousel__slide:first-of-type {
-    margin-left: -200%;
-  }
-  .carousel > input:nth-of-type(2):checked ~ .carousel__slides .carousel__slide:first-of-type {
-    margin-left: -100%;
-  }
-  .carousel > input:nth-of-type(1):checked ~ .carousel__slides .carousel__slide:first-of-type {
-    margin-left: 0%;
-  }
-  .carousel > input:nth-of-type(1):checked ~ .carousel__thumbnails li:nth-of-type(1) {
-    box-shadow: 0px 0px 0px 5px rgba(0, 0, 255, 0.5);
-  }
-  .carousel > input:nth-of-type(2):checked ~ .carousel__thumbnails li:nth-of-type(2) {
-    box-shadow: 0px 0px 0px 5px rgba(0, 0, 255, 0.5);
-  }
-  .carousel > input:nth-of-type(3):checked ~ .carousel__thumbnails li:nth-of-type(3) {
-    box-shadow: 0px 0px 0px 5px rgba(0, 0, 255, 0.5);
-  }
-  .carousel > input:nth-of-type(4):checked ~ .carousel__thumbnails li:nth-of-type(4) {
-    box-shadow: 0px 0px 0px 5px rgba(0, 0, 255, 0.5);
-  }
-  .carousel > input:nth-of-type(5):checked ~ .carousel__thumbnails li:nth-of-type(5) {
-    box-shadow: 0px 0px 0px 5px rgba(0, 0, 255, 0.5);
-  }
-  .carousel > input:nth-of-type(6):checked ~ .carousel__thumbnails li:nth-of-type(6) {
-    box-shadow: 0px 0px 0px 5px rgba(0, 0, 255, 0.5);
-  }
+/* General styles for thumbnails and checkboxes */
+.carousel__thumbnails li {
+  position: relative; /* Ensure the li elements are positioned relative */
+}
+
+.carousel__thumbnails input[type="radio"] {
+  position: absolute; /* Position the radio buttons absolutely */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0; /* Hide the actual radio button */
+  cursor: pointer;
+}
+
+.carousel__thumbnails input[type="radio"]:checked + label {
+  box-shadow: 0px 0px 0px 5px rgba(0, 0, 255, 0.5); /* Apply the box shadow to the label when checked */
+  border-radius: 10px !important; /* Ensure the border radius matches the thumbnail image */
+}
+
+.carousel__thumbnails label {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel__thumbnails img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.carousel__thumbnails li {
+  flex: 1 1 auto;
+  max-width: calc((100% / 6) - 20px);
+  margin: 0 10px;
+  transition: all 300ms ease-in-out;
+}
+
+.carousel__thumbnails label:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 100%;
+}
+
+.carousel__thumbnails label > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel__thumbnails label:hover, .carousel__thumbnails label:focus {
+  cursor: pointer;
+}
+
+.carousel__thumbnails label:hover img, .carousel__thumbnails label:focus img {
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+  transition: all 300ms ease-in-out;
+}
+
+.carousel > input {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 100%; /* Set height to match thumbnail image */
+  width: 100%; /* Set width to match thumbnail image */
+  margin: 0; /* Remove negative margin */
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  opacity: 0; /* Hide the checkbox */
   
-  .carousel__slides {
-    position: relative;
-    z-index: 1;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    box-sizing: border-box;
-    display: flex;
-  }
-  
+}
+
+.carousel > input:nth-of-type(6):checked ~ .carousel__slides .carousel__slide:first-of-type {
+  margin-left: -500%;
+}
+
+.carousel > input:nth-of-type(5):checked ~ .carousel__slides .carousel__slide:first-of-type {
+  margin-left: -400%;
+}
+
+.carousel > input:nth-of-type(4):checked ~ .carousel__slides .carousel__slide:first-of-type {
+  margin-left: -300%;
+}
+
+.carousel > input:nth-of-type(3):checked ~ .carousel__slides .carousel__slide:first-of-type {
+  margin-left: -200%;
+}
+
+.carousel > input:nth-of-type(2):checked ~ .carousel__slides .carousel__slide:first-of-type {
+  margin-left: -100%;
+}
+
+.carousel > input:nth-of-type(1):checked ~ .carousel__slides .carousel__slide:first-of-type {
+  margin-left: 0%;
+}
+
+/* Specific styles for checked input on small screens */
+.carousel > input:nth-of-type(1):checked ~ .carousel__thumbnails li:nth-of-type(1),
+.carousel > input:nth-of-type(2):checked ~ .carousel__thumbnails li:nth-of-type(2),
+.carousel > input:nth-of-type(3):checked ~ .carousel__thumbnails li:nth-of-type(3),
+.carousel > input:nth-of-type(4):checked ~ .carousel__thumbnails li:nth-of-type(4),
+.carousel > input:nth-of-type(5):checked ~ .carousel__thumbnails li:nth-of-type(5),
+.carousel > input:nth-of-type(6):checked ~ .carousel__thumbnails li:nth-of-type(6) {
+  box-shadow: 0px 0px 0px 5px rgba(0, 0, 255, 0.5);
+  margin-top: 0;
+}
+
+.carousel__slides {
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.carousel__slide {
+  position: relative;
+  display: block;
+  flex: 1 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: all 300ms ease-out;
+  vertical-align: top;
+  box-sizing: border-box;
+  white-space: normal;
+}
+
+.carousel__slide figure {
+  display: flex;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel__slide div {
+  position: relative;
+  width: 100%;
+}
+
+.carousel__slide div:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 66.6667%; /* Maintain aspect ratio */
+}
+
+.carousel__slide div > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover; /* Ensure the image covers the container */
+}
+
+.carousel__slide img {
+  display: block;
+  flex: 1 1 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.carousel__slide figcaption {
+  align-self: flex-end;
+  padding: 20px 20px 0 20px;
+  flex: 0 0 auto;
+  width: 25%;
+  min-width: 150px;
+}
+
+.carousel__slide .credit {
+  margin-top: 1rem;
+  color: rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+.carousel__slide.scrollable {
+  overflow-y: scroll;
+}
+
+.carousel__thumbnails {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  margin: 0 -10px;
+}
+
+.carousel__slides + .carousel__thumbnails {
+  margin-top: 20px;
+}
+
+/* Small screen styles */
+@media (max-width: 767px) {
   .carousel__slide {
-    position: relative;
-    display: block;
-    flex: 1 0 100%;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    transition: all 300ms ease-out;
-    vertical-align: top;
-    box-sizing: border-box;
-    white-space: normal;
+    flex-direction: column;
   }
   .carousel__slide figure {
-    display: flex;
-    margin: 0;
+    flex-direction: column;
+    align-items: center;
   }
-  .carousel__slide div {
-    position: relative;
-    width: 100%;
-  }
-  .carousel__slide div:before {
-    display: block;
-    content: "";
-    width: 100%;
-    padding-top: 66.6666666667%;
-  }
-
-  .carousel__slide div > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .carousel__slide img {
-    display: block;
-    flex: 1 1 auto;
-    max-width: 100%;
-    height: auto;
-  }
-  .carousel__slide figcaption {
-    align-self: flex-end;
-    padding: 20px 20px 0 20px;
-    flex: 0 0 auto;
-    width: 25%;
-    min-width: 150px;
-  }
-  .carousel__slide .credit {
-    margin-top: 1rem;
-    color: rgba(0, 0, 0, 0.5);
-    display: block;
-  }
-  .carousel__slide.scrollable {
-    overflow-y: scroll;
-  }
-  
-  .carousel__thumbnails {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    margin: 0 -10px;
-  }
-  .carousel__slides + .carousel__thumbnails {
-    margin-top: 20px;
-  }
-  .carousel__thumbnails li {
-    flex: 1 1 auto;
-    max-width: calc((100% / 6) - 20px);
-    margin: 0 10px;
-    transition: all 300ms ease-in-out;
-  }
-  .carousel__thumbnails label {
-    display: block;
-    position: relative;
-  }
-  .carousel__thumbnails label:before {
-    display: block;
-    content: "";
-    width: 100%;
-    padding-top: 100%;
-  }
-  .carousel__thumbnails label > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .carousel__thumbnails label:hover, .carousel__thumbnails label:focus {
-    cursor: pointer;
-  }
-  .carousel__thumbnails label:hover img, .carousel__thumbnails label:focus img {
-    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
-    transition: all 300ms ease-in-out;
-  }
-  .carousel__thumbnails img {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  
-  /* Small screen styles */
-@media (max-width: 767px) {
   .carousel__slide figcaption {
     width: 100%;
     min-width: auto;
+    padding: 10px;
   }
   .carousel__slide .credit {
     display: none; /* Hide the credit on small screens */
   }
   .carousel__thumbnails {
-    margin: 0 -5px; /* Adjust margin for smaller thumbnails */
+    margin: 0; /* Adjust margin for smaller thumbnails */
   }
   .carousel__thumbnails li {
     max-width: calc((100% / 4) - 10px); /* Adjust thumbnail size for smaller screens */
     margin: 0 5px; /* Adjust margin for smaller thumbnails */
+    height: auto; /* Reset height for smaller screens */
+    padding-top: 75%; /* Maintain aspect ratio */
+  }
+  .carousel__slide div:before {
+    padding-top: 56.25%; /* Adjust aspect ratio for smaller screens */
+  }
+
+}
+
+/* Small screen styles */
+@media (max-width: 767px) {
+  .carousel__thumbnails {
+    display: none; /* Hide the thumbnails on small screens */
+  }
+
+  .carousel__thumbnails input[type="radio"]:checked + label {
+    box-shadow: 0px 0px 0px 3px rgba(0, 0, 255, 0.5); /* Adjust the box shadow for smaller screens */
+    border-radius: 10px !important; /* Ensure the border radius matches the thumbnail image */
+  }
+
+  .carousel__thumbnails label {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%; /* Maintain aspect ratio */
+  }
+
+  .carousel__thumbnails label > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel > input {
+    height: 100%; /* Ensure the height is 100% to match the thumbnail image */
+    width: 100%; /* Ensure the width is 100% to match the thumbnail image */
   }
 }
+
+  
     /* Badge css */
 
     
@@ -334,34 +425,3 @@ section {
 
   
 
-.swipe-indicator {
-  display: none; /* Hide by default */
-  text-align: center;
-  color: #fff; /* Change the color based on your design */
-  font-size: 16px;
-  padding: 10px;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.5); /* Semi-transparent background */
-  border-radius: 20px;
-  white-space: nowrap;
-  margin-bottom: 5% !important;
- 
-}
-
-@media only screen and (max-width: 768px) {
-  .swipe-indicator {
-      display: block; /* Only show on small screens */
-  }
-}
-
-@keyframes swipe-animation {
-    0%, 100% { transform: translateX(-50%) translateX(0); }
-    50% { transform: translateX(-50%) translateX(-10px); }
-}
-
-.swipe-indicator {
-    animation: swipe-animation 2s ease-in-out infinite;
-}
