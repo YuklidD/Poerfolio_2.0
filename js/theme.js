@@ -81,21 +81,38 @@ $('.navbar-side-open [data-toggle="collapse"], .navbar-overlay [data-toggle="col
   year and actions
 ----------------------------------- */
 
-// JavaScript to update project name when radio button is clicked
 document.addEventListener('DOMContentLoaded', function() {
     const radioButtons = document.querySelectorAll('.carousel input[name="slides"]');
     const projectName = document.getElementById('project-name');
+    const indicatorsContainer = document.querySelector('.carousel__indicators');
 
-    radioButtons.forEach(function(radioButton) {
+    // Generate indicators
+    radioButtons.forEach(function(radioButton, index) {
+        const indicator = document.createElement('li');
+        if (radioButton.checked) {
+            indicator.classList.add('active');
+        }
+        indicatorsContainer.appendChild(indicator);
+
         radioButton.addEventListener('click', function() {
+            updateIndicators(index);
             const projectNameText = this.previousElementSibling.textContent;
             projectName.textContent = projectNameText;
         });
     });
-});
 
-document.addEventListener('DOMContentLoaded', function() {
-    var startX, dist, threshold = 100; // Required min distance traveled to be considered swipe
+    function updateIndicators(activeIndex) {
+        const indicators = indicatorsContainer.querySelectorAll('li');
+        indicators.forEach((indicator, index) => {
+            if (index === activeIndex) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
+    }
+
+    var startX, startY, distX, distY, threshold = 100; // Required min distance traveled to be considered swipe
     var allowedTime = 200, elapsedTime, startTime; // Timing variables
     var slides = document.getElementsByName('slides'); // Get all slide inputs
     var projectNameElement = document.getElementById('project-name'); // Get the project name element
@@ -110,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         slides[newIndex].checked = true;
         updateProjectName(newIndex); // Update the project name
+        updateIndicators(newIndex); // Update the indicators
     }
 
     function updateProjectName(index) {
@@ -123,18 +141,21 @@ document.addEventListener('DOMContentLoaded', function() {
     carousel.addEventListener('touchstart', function(e) {
         var touchobj = e.changedTouches[0];
         startX = touchobj.pageX;
+        startY = touchobj.pageY;
         startTime = new Date().getTime(); // Record time when finger first makes contact with surface
         e.preventDefault();
     }, false);
 
     carousel.addEventListener('touchend', function(e) {
         var touchobj = e.changedTouches[0];
-        dist = touchobj.pageX - startX; // Get total dist traveled by finger while in contact with surface
+        distX = touchobj.pageX - startX; // Get total dist traveled by finger while in contact with surface
+        distY = touchobj.pageY - startY; // Get total dist traveled vertically
         elapsedTime = new Date().getTime() - startTime; // Get time elapsed
-        var swipeRightBol = elapsedTime <= allowedTime && dist >= threshold;
-        var swipeLeftBol = elapsedTime <= allowedTime && dist <= -threshold;
 
-        if (swipeRightBol || swipeLeftBol) handleSwipe(swipeLeftBol);
+        if (Math.abs(distX) >= threshold && Math.abs(distY) <= 100 && elapsedTime <= allowedTime) {
+            var swipeLeftBol = distX <= -threshold;
+            handleSwipe(swipeLeftBol);
+        }
 
         e.preventDefault();
     }, false);
