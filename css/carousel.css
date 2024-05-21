@@ -33,7 +33,7 @@ section {
 
 /* General styles for thumbnails and checkboxes */
 .carousel__thumbnails li {
-  position: relative; /* Ensure the li elements are positioned relative */
+  position: relative; 
 }
 
 .carousel__thumbnails input[type="radio"] {
@@ -47,8 +47,8 @@ section {
 }
 
 .carousel__thumbnails input[type="radio"]:checked + label {
-  box-shadow: 0px 0px 0px 5px rgba(0, 0, 255, 0.5); /* Apply the box shadow to the label when checked */
-  border-radius: 10px !important; /* Ensure the border radius matches the thumbnail image */
+  box-shadow: 0px 0px 0px 5px rgba(0, 0, 255, 0.5); 
+  border-radius: 10px !important; 
 }
 
 .carousel__thumbnails label {
@@ -170,12 +170,16 @@ section {
   white-space: normal;
 }
 
-.carousel__slide figure {
-  display: flex;
-  margin: 0;
-  width: 100%;
-  height: 100%;
+#project-name {
+  font-size: 24px;
+  margin-top: 20px; /* Increase top margin */
+  padding-top: 20px; /* Increase top padding */
+  text-align:left;
+  color: #ffffff; /* Adjust the color as needed */
 }
+
+
+
 
 .carousel__slide div {
   position: relative;
@@ -208,6 +212,14 @@ section {
   height: auto;
 }
 
+.carousel__slide figure {
+  display: flex;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
 .carousel__slide figcaption {
   align-self: flex-end;
   padding: 20px 20px 0 20px;
@@ -238,95 +250,33 @@ section {
   margin-top: 20px;
 }
 
-/* Small screen styles */
-@media (max-width: 767px) {
-  .carousel__slide {
-    flex-direction: column;
-  }
-  .carousel__slide figure {
-    flex-direction: column;
-    align-items: center;
-  }
-  .carousel__slide figcaption {
-    width: 100%;
-    min-width: auto;
-    padding: 10px;
-  }
-  .carousel__slide .credit {
-    display: none; /* Hide the credit on small screens */
-  }
-  .carousel__thumbnails {
-    margin: 0; /* Adjust margin for smaller thumbnails */
-  }
-  .carousel__thumbnails li {
-    max-width: calc((100% / 4) - 10px); /* Adjust thumbnail size for smaller screens */
-    margin: 0 5px; /* Adjust margin for smaller thumbnails */
-    height: auto; /* Reset height for smaller screens */
-    padding-top: 75%; /* Maintain aspect ratio */
-  }
-  .carousel__slide div:before {
-    padding-top: 56.25%; /* Adjust aspect ratio for smaller screens */
-  }
 
-}
-
-/* Small screen styles */
-@media (max-width: 767px) {
-  .carousel__thumbnails {
-    display: none; /* Hide the thumbnails on small screens */
-  }
-
-  .carousel__thumbnails input[type="radio"]:checked + label {
-    box-shadow: 0px 0px 0px 3px rgba(0, 0, 255, 0.5); /* Adjust the box shadow for smaller screens */
-    border-radius: 10px !important; /* Ensure the border radius matches the thumbnail image */
-  }
-
-  .carousel__thumbnails label {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%; /* Maintain aspect ratio */
-  }
-
-  .carousel__thumbnails label > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .carousel > input {
-    height: 100%; /* Ensure the height is 100% to match the thumbnail image */
-    width: 100%; /* Ensure the width is 100% to match the thumbnail image */
-  }
-}
 
 .carousel__indicators {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    list-style: none;
-    padding: 0;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px; /* Adjust this to position the indicators slightly higher */
+  padding-bottom: 20px !important; 
+  list-style: none;
+  padding: 0;
 }
 
 .carousel__indicators li {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.5);
-    margin: 0 5px;
-    transition: background-color 0.3s;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 255, 0, 0.5), rgba(0, 128, 0, 0.5)); /* Radial gradient in green */
+  box-shadow: 0 0 3px rgba(0, 255, 0, 0); /* Reduce glow effect */
+  margin: 0 5px;
+  transition: transform 0.3s, box-shadow 0.3s; 
 }
 
 .carousel__indicators li.active {
-    background-color: rgba(0, 0, 255, 0.5);
+  transform: scale(1.3); 
+  box-shadow: 0 0 6px rgba(0, 255, 0, 0.1); 
 }
 
 
-
-  
     /* Badge css */
 
     
@@ -422,6 +372,71 @@ section {
 }
 
 
+/* Small screen styles */
+@media (max-width: 767px) {
+  .carousel__slide {
+    flex-direction: column;
+  }
+  .carousel__slide figure {
+    flex-direction: column;
+    align-items: center;
+  }
+  .carousel__slide figcaption {
+    width: 100%;
+    min-width: auto;
+    padding: 10px;
+  }
+  .carousel__slide .credit {
+    display: none;
+  }
+  .carousel__thumbnails {
+    margin: 0; 
+  }
+  .carousel__thumbnails li {
+    max-width: calc((100% / 4) - 10px); 
+    margin: 0 5px;
+    height: auto;
+    padding-top: 75%; 
+  }
+  .carousel__slide div:before {
+    padding-top: 56.25%; 
+  }
+
+}
+
+/* Small screen styles */
+@media (max-width: 767px) {
+  .carousel__thumbnails {
+    display: none;
+  }
+
+  .carousel__thumbnails input[type="radio"]:checked + label {
+    box-shadow: 0px 0px 0px 3px rgba(0, 0, 255, 0.5); /* Adjust the box shadow for smaller screens */
+    border-radius: 10px !important; /* Ensure the border radius matches the thumbnail image */
+  }
+
+  .carousel__thumbnails label {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%; /* Maintain aspect ratio */
+  }
+
+  .carousel__thumbnails label > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel > input {
+    height: 100%; /* Ensure the height is 100% to match the thumbnail image */
+    width: 100%; /* Ensure the width is 100% to match the thumbnail image */
+  }
+}
+
 
 @media (min-width: 768px) {
     .badges {
@@ -446,5 +461,22 @@ section {
   }
 }
 
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  #project-name {
+    font-size: 20px; 
+    margin-top: 15px; 
+    padding-top: 15px; 
+  }
+}
+
+@media (max-width: 480px) {
+  #project-name {
+    font-size: 18px; 
+    margin-top: 10px; 
+    padding-top: 10px; 
+  }
+}
   
 
