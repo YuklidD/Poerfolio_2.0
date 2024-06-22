@@ -371,6 +371,41 @@ section {
     font-size: 24px;
 }
 
+.e-badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-padding {
+  padding: 20px;
+}
+
+.e-badge-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .custom-padding {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-padding {
+    padding: 5px;
+  }
+
+  .e-badge-container img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
 
 /* Small screen styles */
 @media (max-width: 767px) {
