@@ -364,12 +364,17 @@ section {
 
 
   .badges {
-    padding: 20px;
+    padding: 10px;
 }
 
 .text-6 {
     font-size: 24px;
 }
+
+.e-badges {
+  padding: 10px;
+}
+
 
 .e-badge-container {
   display: flex;
@@ -379,7 +384,7 @@ section {
 }
 
 .custom-padding {
-  padding: 20px;
+  padding: 30px; /* Increased padding for more gap between badges */
 }
 
 .e-badge-container img {
@@ -390,21 +395,20 @@ section {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .custom-padding {
-    padding: 10px;
+    padding: 15px; /* Adjust padding for medium screens */
   }
 }
 
 @media (max-width: 480px) {
   .custom-padding {
-    padding: 5px;
+    padding: 10px; /* Adjust padding for small screens */
   }
 
   .e-badge-container img {
-    width: 120px;
-    height: 120px;
+    width: 100px; /* Reduce width for small screens */
+    height: 100px; /* Reduce height for small screens */
   }
 }
-
 
 
 /* Small screen styles */
